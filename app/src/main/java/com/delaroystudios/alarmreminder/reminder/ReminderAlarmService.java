@@ -7,9 +7,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.RingtoneManager;
 import android.net.Uri;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
 
 import com.delaroystudios.alarmreminder.AddReminderActivity;
 import com.delaroystudios.alarmreminder.R;
@@ -21,7 +23,7 @@ import com.delaroystudios.alarmreminder.data.AlarmReminderContract;
 
 public class ReminderAlarmService extends IntentService {
     private static final String TAG = ReminderAlarmService.class.getSimpleName();
-
+    private NotificationCompat.Builder notificationBuilder;
     private static final int NOTIFICATION_ID = 42;
 
     Cursor cursor;
@@ -73,6 +75,11 @@ public class ReminderAlarmService extends IntentService {
                 .setAutoCancel(true)
                 .build();
 
+        notificationBuilder = new NotificationCompat.Builder(ReminderAlarmService.this);
+        long[] v = {500, 1000};
+         Uri uriSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        notificationBuilder.setVibrate(v);
+        notificationBuilder.setSound(uriSound);
         manager.notify(NOTIFICATION_ID, note);
     }
 }

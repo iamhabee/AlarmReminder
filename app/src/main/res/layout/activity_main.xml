@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.delaroystudios.alarmreminder.MainActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:text="@string/no_cardetails"/>
     </RelativeLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

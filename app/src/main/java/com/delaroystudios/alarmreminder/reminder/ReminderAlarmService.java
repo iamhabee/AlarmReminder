@@ -67,19 +67,17 @@ public class ReminderAlarmService extends IntentService {
             }
         }
 
-        Notification note = new NotificationCompat.Builder(this)
+         notificationBuilder = new NotificationCompat.Builder(this)
                 .setContentTitle(getString(R.string.reminder_title))
                 .setContentText(description)
                 .setSmallIcon(R.drawable.ic_add_alert_black_24dp)
                 .setContentIntent(operation)
-                .setAutoCancel(true)
-                .build();
+                .setAutoCancel(true);
 
-        notificationBuilder = new NotificationCompat.Builder(ReminderAlarmService.this);
         long[] v = {500, 1000};
          Uri uriSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         notificationBuilder.setVibrate(v);
         notificationBuilder.setSound(uriSound);
-        manager.notify(NOTIFICATION_ID, note);
+        manager.notify(NOTIFICATION_ID, notificationBuilder.build());
     }
 }
